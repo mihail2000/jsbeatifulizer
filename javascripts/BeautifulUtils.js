@@ -74,7 +74,6 @@ define(function () {
             onlyEmptyLinesBetween = true;
         // Find next occurrence of var
         while (i !== null && i < (codeArray.length - 1) && retval === null) {
-            console.log(i);
             s = codeArray[i];
             if (s !== undefined) {
                 if ($.trim(s) === '') {

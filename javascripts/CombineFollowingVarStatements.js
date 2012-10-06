@@ -24,9 +24,6 @@ define(['BeautifulUtils'], function (beautyUtils) {
         while (varLine.nextVarLine !== null) {
             console.log(codeArray[varLine.nextVarLine]);
             i++;
-            if (i === 40) {
-                console.log(i);
-            }
             nextVarLine = beautyUtils.findNextVar(codeArray, varLine.nextVarLine + 1);
             if (nextVarLine.nextVarLine !== null) {
                 // If there's only empty lines in between these two 'var' statement lines, remove all those empty lines for good.

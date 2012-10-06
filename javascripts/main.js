@@ -40,10 +40,10 @@ require(['RemoveTrailingSpaces', 'RemoveEmptyLines', 'CombineFollowingVarStateme
         codeArray = oldCode.split('\n');
         console.log('beatifulizeCode begins');
         beautifulizers.push(removeTralingSpaces);
+        beautifulizers.push(removeEmptyLines);
         beautifulizers.push(combineFollowingVarStatements);
         beautifulizers.push(combineVarStatements);
         beautifulizers.push(fixIndentations);
-        beautifulizers.push(removeEmptyLines);
         for (i = 0; i < beautifulizers.length; i++) {
             beautifulizers[i].beautifulizeCode(codeArray);
         }

@@ -94,6 +94,9 @@ define(function () {
             }
             i++;
         }
+        if (!onlyEmptyLinesBetween) {
+            emptyLineCounter = 0;
+        }
         return {
             nextVarLine: retval,
             emptyLines: emptyLineCounter

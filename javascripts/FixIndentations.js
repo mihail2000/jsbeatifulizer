@@ -44,6 +44,13 @@ define(['BeautifulUtils'], function (beautyUtils) {
         }
         return s;
     }
+    function getClosureIndentationStep(s) {
+        var i,
+            indentation = 0;
+        for (i = 0; i < s.length; i++) {
+            
+        }
+    }
     /*
     * fixIndentations
     *
@@ -62,21 +69,25 @@ define(['BeautifulUtils'], function (beautyUtils) {
             blockEnds = 0,
             semicolonpos = 0,
             commapos = 0,
+            blockEndsCount = 0,
+            blockStartsCount = 0,
             i = 0,
             s = '',
             waitingForEndLine = false;
         for (i = 0; i < codeArray.length; i++) {
             s = beautyUtils.ltrim(codeArray[i]);
             if (s.substring(0, 2) !== '//') {
+                blockStartsCount = (getLineWithoutComments(s).split(/{/g).length - 1);
+                blockEndsCount = (getLineWithoutComments(s).split(/}/g).length - 1);                
                 blockStart = getLineWithoutComments(s).lastIndexOf('{');
                 blockEnds = getLineWithoutComments(s).lastIndexOf('}');
                 semicolonpos = getLineWithoutComments(s).lastIndexOf(';');
                 commapos = getLineWithoutComments(s).lastIndexOf(',');
-                if (blockEnds > -1) {
-                    indentationLevel -= CONST_DEFAULT_INDENTATION;
+                if (blockEnds > -1 && (blockEndsCount > blockStartsCount || getLineWithoutComments(s).indexOf('}') === 0)) {
+                    indentationLevel -= CONST_DEFAULT_INDENTATION * blockEndsCount;
                 }
                 codeArray[i] = beautyUtils.indentLine(s, indentationLevel);
-                if (i === 41) {
+                if (i === 39) {
                     console.log(i);
                 }
                 // Does this line start a new block that does not end on this line?
